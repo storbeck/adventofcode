@@ -1,12 +1,21 @@
 const fs = require("fs");
 
-fs.readFile("d3p1.txt", "utf8", (err, data) => {
+const tree = '#'
+const slope = 3
+let position = 0
+
+fs.readFile("input.txt", "utf8", (err, data) => {
   if (err) throw err;
 
-  const open = '.'
-  const tree = '#'
+  const map = data.split('\n')
   
-  data.split('\n').forEach(line => {
-   
-  })
+  console.log(
+    map.slice(1).filter(row => {
+      position += slope
+      if (position > map[0].length - 1) position -= map[0].length
+
+      return row.split('')[position] === tree
+    }
+    ).length
+  )
 });
