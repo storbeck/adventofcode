@@ -4,7 +4,7 @@ const total = 2020;
 fs.readFile("d1p2.txt", "utf8", (err, data) => {
   if (err) throw err;
 
-  const uniques = [...new Set(data.split("\n"))];
+  const uniques = new Set(data.split("\n"));
   let running = true;
 
   for (let num of uniques) {
@@ -14,7 +14,7 @@ fs.readFile("d1p2.txt", "utf8", (err, data) => {
 
       const missing = Math.abs(total - (x + y))
 
-      if (x + y + missing === total && uniques.includes('' + missing)) {
+      if (x + y + missing === total && uniques.has('' + missing)) {
         console.log(x * y * missing)
         running = false;
         break
